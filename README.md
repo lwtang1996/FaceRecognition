@@ -14,7 +14,9 @@ This is a facerecgonition system.
 	* shape_predictor_68_face_landmarks.dat
 	* dlib_face_recognition_resnet_model_v1.dat
 	* vectors.npy(存储的每个人的人脸特征向量)
+	* test.jpg(待测人脸照片)
 
 ## 使用方法
 第一种方式：先运行FaceRecognition.py产生人脸库的特征向量集，再运行face.py直接打印出识别结果。</br>
 第二种方式：先运行FaceRecognition.py产生人脸库的特征向量集，再运行main.py在UI界面中进行人脸识别操作。
+<img src = "E:/1.jpg">
