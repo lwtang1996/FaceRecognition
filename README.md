@@ -19,4 +19,4 @@ This is a facerecgonition system.
 ## 使用方法
 第一种方式：先运行FaceRecognition.py产生人脸库的特征向量集，再运行face.py直接打印出识别结果。</br>
 第二种方式：先运行FaceRecognition.py产生人脸库的特征向量集，再运行main.py在UI界面中进行人脸识别操作。
-![](https://github.com/LWTang/FaceRecgonition/raw/master/1.jpg)
+![](https://github.com/LWTang/FaceRecgonition/raw/master/Screenshots/1.jpg)
