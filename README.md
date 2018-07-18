@@ -16,5 +16,5 @@ This is a facerecgonition system.
 	* vectors.npy(存储的每个人的人脸特征向量)
 
 ## 使用方法
-第一种方式：先运行FaceRecognition.py产生人脸库的特征向量集，再运行face.py直接打印出识别结果。
+第一种方式：先运行FaceRecognition.py产生人脸库的特征向量集，再运行face.py直接打印出识别结果。</br>
 第二种方式：先运行FaceRecognition.py产生人脸库的特征向量集，再运行main.py在UI界面中进行人脸识别操作。
