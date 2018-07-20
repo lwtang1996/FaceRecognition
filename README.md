@@ -37,6 +37,7 @@ This is a facerecgonition system.
 	* dlib_face_recognition_resnet_model_v1.dat
 	* vectors.npy(存储的每个人的人脸特征向量)
 	* test.jpg(待测人脸照片)
+	
 采用dlib人脸检测和opencv人脸检测的耗时对比如下(两张人脸测试图)：
 * test.jpg
 
