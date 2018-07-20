@@ -81,11 +81,3 @@ for i in descriptors:
 min_dist = numpy.argmin(dist)
 result = name_list[min_dist][:-4]
 print(result)
-
-
-
-
-
-
-
-

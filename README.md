@@ -22,3 +22,32 @@ This is a facerecgonition system.
 >第二种方式运行结果如下图：
 
 ![](https://github.com/LWTang/FaceRecgonition/raw/master/Screenshots/1.jpg)
+
+## 7.20号更新！
+之前的face.py和main.py都是采用dlib的方法进行人脸检测的，速度极慢，更新后main.py中采取opencv的方法来进行人脸检测(原方法注释掉),新的face_opencv.py可代替face.py实现其功能。如今的目录结构为：
+* pyproject
+	* candidate_faces
+		* 400个人的登记照(每人一张)
+	* face.py
+	* **face_opencv.py**
+	* FaceRecognition.py
+	* main.py
+	* **lbpcascade_frontalface_improved.xml**
+	* shape_predictor_68_face_landmarks.dat
+	* dlib_face_recognition_resnet_model_v1.dat
+	* vectors.npy(存储的每个人的人脸特征向量)
+	* test.jpg(待测人脸照片)
+采用dlib人脸检测和opencv人脸检测的耗时对比如下(两张人脸测试图)：
+* test.jpg
+
+*test.jpg* | **opencv** | **dlib**
+--- | --- | ---
+**人脸检测耗时(s)** | 1.27 | 10.09
+**人脸识别总耗时(s)** | 3.71 | 12.47
+
+* tlw.jpg
+
+*tlw.jpg* | **opencv** | **dlib**
+--- | --- | ---
+**人脸检测耗时(s)** | 1.48 | 9.95
+**人脸识别总耗时(s)** | 3.92 | 12.37

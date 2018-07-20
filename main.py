@@ -80,7 +80,13 @@ class Myshow(QtWidgets.QWidget, Ui_Dialog):
 
         self.name_list = os.listdir(self.face_folder_path)
         self.descriptors = numpy.load('vectors.npy')
-        self.detector = dlib.get_frontal_face_detector()
+
+        # dlib方法检测人脸
+        # self.detector = dlib.get_frontal_face_detector()
+
+        # opencv方法检测人脸
+        self.face_cascade = cv2.CascadeClassifier('lbpcascade_frontalface_improved.xml')
+
         self.feature_point = dlib.shape_predictor(self.predictor_path)
         self.feature_model = dlib.face_recognition_model_v1(self.face_rc_model_path)
         # self.dist = []
@@ -99,30 +105,46 @@ class Myshow(QtWidgets.QWidget, Ui_Dialog):
 
     def Recognition(self):
         test_img = cv2.imread(self.test_path)
-        dets = self.detector(test_img, 1)
-        for k, d in enumerate(dets):
+
+        # dlib方法检测人脸
+        # dets = self.detector(test_img, 1)
+        # for k, d in enumerate(dets):
+        #     shape = self.feature_point(test_img, d)
+        #     test_feature = self.feature_model.compute_face_descriptor(test_img, shape)
+        #     test_feature = numpy.array(test_feature)
+
+        # opencv方法检测人脸
+        gray = cv2.cvtColor(test_img, cv2.COLOR_BGR2GRAY)
+        dets = self.face_cascade.detectMultiScale(gray, 1.1, 6)
+        mark = 0
+        for (x, y, w, h) in dets:
+            mark = 1
+            d = dlib.rectangle(numpy.long(x),numpy.long(y),numpy.long(x+w),numpy.long(y+h))
             shape = self.feature_point(test_img, d)
             test_feature = self.feature_model.compute_face_descriptor(test_img, shape)
             test_feature = numpy.array(test_feature)
-        dist = []
-        count = 0
-        for i in self.descriptors:
-            dist_ = numpy.linalg.norm(i - test_feature)
-            print('%s : %f' % (self.name_list[count], dist_))
-            dist.append(dist_)
-            count += 1
 
-        min_dist = numpy.argmin(dist)
-        print('%s' % self.name_list[min_dist][:-4])
+        if mark == 1:
+            dist = []
+            count = 0
+            for i in self.descriptors:
+                dist_ = numpy.linalg.norm(i - test_feature)
+                print('%s : %f' % (self.name_list[count], dist_))
+                dist.append(dist_)
+                count += 1
 
-        show_img_path = os.path.join(self.face_folder_path, self.name_list[min_dist])
-        self.label.setPixmap(QtGui.QPixmap(show_img_path))
-        self.lineEdit_2.setText(self.name_list[min_dist][:-4])
+            min_dist = numpy.argmin(dist)
+            print('%s' % self.name_list[min_dist][:-4])
+
+            show_img_path = os.path.join(self.face_folder_path, self.name_list[min_dist])
+            self.label.setPixmap(QtGui.QPixmap(show_img_path))
+            self.lineEdit_2.setText(self.name_list[min_dist][:-4])
+        else :
+            self.lineEdit_2.setText('haven\'t find any people')
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     w = Myshow()
     w.show()
     sys.exit(app.exec_())
-
-
