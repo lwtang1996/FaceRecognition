@@ -1,5 +1,5 @@
-# FaceRecgonition
-This is a facerecgonition system.
+# FaceRecognition
+This is a facerecognition system.
 
 ## 关于
 >本工程基于python、opencv、dlib、pyqt，在pycharm下编译通过，在400人规模的人脸识别上表现尚可。由于人脸规模变大时提取每个人脸特征耗时较长，所以将提取特征和识别分为两个阶段。
